@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+        .orange {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <table id="myTable">
+    </table>
+
+    <button onclick="addNumber()">Добавить число</button>
+
+    <script>
+        var numbers = [];
+        for (var i = 0; i < 30; i++) {
+            numbers.push(Math.floor(Math.random() * 100));
+        }
+
+        var table = document.getElementById("myTable");
+        for (var i = 0; i < 5; i++) {
+            var row = table.insertRow(i);
+            for (var j = 0; j < 6; j++) {
+                var cell = row.insertCell(j);
+                cell.innerHTML = numbers[i * 6 + j];
+                if (numbers[i * 6 + j] >= 50) {
+                    cell.style.backgroundColor = "orange";
+                }
+            }
+        }
+
+        
+        function addNumber() {
+            var number = Math.floor(Math.random() * 100);
+            numbers.push(number);
+            var lastRow = table.rows[table.rows.length - 1];
+            if (lastRow.cells.length < 6) {
+                var cell = lastRow.insertCell();
+            } else {
+                var row = table.insertRow();
+                var cell = row.insertCell();
+            }
+            cell.innerHTML = number;
+            if (number >= 50) {
+                cell.style.backgroundColor = "orange";
+            }
+        }
+    </script>
+</body>
+</html>
